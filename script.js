@@ -131,3 +131,20 @@ const questions = [
     ]
   }
 ]
+const timerElement = document.getElementById('timer');
+let timeLeft = 60;
+function updateTimer() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+updateTimer();
+const timerInterval = setInterval(() => {
+  if (timeLeft > 0) {
+    timeLeft--;
+    updateTimer();
+  } else {
+    clearInterval(timerInterval);
+    timerElement.textContent = "Time's Up!";
+  }
+}, 1000);
